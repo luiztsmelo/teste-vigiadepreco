@@ -18,7 +18,7 @@
           </div>
 
           <a href="#" class="product-image-link">
-            <img :src="product.image" class="product-image" loading="lazy">
+            <img :src="product.image" class="product-image" loading="lazy" height="95">
           </a>
 
           <a href="#" class="product-title">
@@ -72,7 +72,7 @@ export default {
     }
   },
   mounted() {
-    if (mobile()) this.cardsNumber = 1.12
+    if (mobile()) this.cardsNumber = 1.1
     this.productsSwiperWidth = this.$refs.productsSwiper.clientWidth
     this.maxDistancePossible = (this.productsSwiperWidth * this.products.length / this.cardsNumber) - this.productsSwiperWidth
     for (const product of Array.from(this.$refs.productsSwiper.children)) {
@@ -187,7 +187,6 @@ export default {
         display: flex;
         justify-content: center;
         .product-image {
-          height: 95px;
           object-fit: contain;
         }
       }
