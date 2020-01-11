@@ -9,30 +9,28 @@
       >
 
       <div ref="productsSwiper" class="products-swiper">
-        <div v-for="product in products" :key="product.id" ref="product" class="product">
+        <a v-for="product in products" :key="product.id" ref="product" href="#" class="product">
           <div class="price-variation-tag" :style="priceVariationTagStyle(product)">
             <img class="price-variation-arrow" src="../../assets/images/price-variation-arrow.svg" :style="priceVariationArrowStyle(product)">
-            <p class="price-variation-value">
+            <span class="price-variation-value">
               {{ priceVariationValue(product) }}
-            </p>
+            </span>
           </div>
 
-          <a href="#" class="product-image-link">
-            <img :src="product.image" class="product-image" loading="lazy" height="95">
-          </a>
+          <img :src="product.image" class="product-image" loading="lazy" height="95">
 
-          <a href="#" class="product-title">
+          <span class="product-title">
             {{ truncateTitle(product) }}
-          </a>
+          </span>
 
-          <p class="product-store">
-            Vendido por <a href="#" class="product-store-link">{{ storeName(product) }}</a>
-          </p>
+          <span class="product-store">
+            Vendido por <span class="product-store-name">{{ storeName(product) }}</span>
+          </span>
 
-          <a class="product-price" href="#">
+          <span class="product-price">
             {{ product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
-          </a>
-        </div>
+          </span>
+        </a>
       </div>
 
       <img
@@ -96,9 +94,9 @@ export default {
     },
     arrowDisabledStyle(side) {
       if (side === 'left') {
-        return this.distanceFromStart === 0 ? 'filter: grayscale(100%) brightness(130%)' : ''
+        return this.distanceFromStart === 0 ? 'filter: grayscale(100%) brightness(140%)' : ''
       } else {
-        return this.distanceFromStart > this.maxDistancePossible ? 'filter: grayscale(100%) brightness(130%)' : ''
+        return this.distanceFromStart > this.maxDistancePossible ? 'filter: grayscale(100%) brightness(140%)' : ''
       }
     },
     priceVariationValue(product) {
@@ -157,6 +155,7 @@ export default {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr auto auto;
+      justify-items: center;
       margin: 10px;
       padding: 28px;
       border-radius: 15px;
@@ -183,18 +182,13 @@ export default {
           font-weight: 500;
         }
       }
-      .product-image-link {
-        display: flex;
-        justify-content: center;
-        .product-image {
-          object-fit: contain;
-        }
+      .product-image {
+        object-fit: contain;
       }
       .product-title {
         text-align: center;
         font-size: 15px;
         font-weight: 500;
-        text-decoration: none;
         color: #454344;
         margin: 35px 0;
       }
@@ -202,11 +196,9 @@ export default {
         text-align: center;
         font-size: 14px;
         color: rgb(142,142,142);
-        cursor: default;
         margin-bottom: 8px;
-        .product-store-link {
+        .product-store-name {
           font-weight: 500;
-          text-decoration: none;
           color: #3D92F5;
         }
       }
