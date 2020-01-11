@@ -1,9 +1,9 @@
 <template>
   <LandingPageSection title="Marcas do app em destaque">
     <div class="stores-container">
-      <div class="stores-logos-grid-mobile">
+      <div v-if="isMobile" class="stores-logos-grid-mobile">
         <div v-for="store in 9" :key="store" class="store-logo" :style="storeLogoStyles(store)">
-          <img class="store-logo-img" src="../../assets/images/logo-placeholder-2-x.png" srcset="`../../assets/images/logo-placeholder-2-x@2x.png 2x, ../../assets/images/logo-placeholder-2-x@3x.png 3x`">
+          <img class="store-logo-img" src="../../assets/images/store-logo.png">
         </div>
       </div>
 
@@ -18,9 +18,9 @@
         </div>
       </div>
 
-      <div class="stores-logos-grid-desktop">
+      <div v-if="!isMobile" class="stores-logos-grid-desktop">
         <div v-for="store in 16" :key="store" class="store-logo" :style="storeLogoStyles(store)">
-          <img class="store-logo-img" src="../../assets/images/logo-placeholder-2-x.png" srcset="`../../assets/images/logo-placeholder-2-x@2x.png 2x, ../../assets/images/logo-placeholder-2-x@3x.png 3x`">
+          <img class="store-logo-img" src="../../assets/images/store-logo.png">
         </div>
       </div>
     </div>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import mobile from 'is-mobile'
 import LandingPageSection from './LandingPageSection.vue'
 
 export default {
@@ -36,6 +37,7 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
       storeTextBoxes: [
         {
           title: 'Título 1',
@@ -52,10 +54,12 @@ export default {
       ]
     }
   },
+  mounted() {
+    mobile() ? this.isMobile = true : this.isMobile = false
+  },
   methods: {
     storeLogoStyles(store) {
-      const mobile = require('is-mobile')
-      if (mobile()) {
+      if (this.isMobile) {
         switch (store) {
           case 1: return { backgroundColor: '#1DA1F2' }
           case 5: return { backgroundColor: '#FF4600' }
@@ -146,8 +150,8 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 65px;
-        height: 65px;
+        width: 70px;
+        height: 70px;
         border-radius: 15px;
         box-shadow: 2px 2px 8px 1px rgba(0,0,0,.12);
         .store-logo-img {
