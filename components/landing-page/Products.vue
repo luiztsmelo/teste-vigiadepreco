@@ -1,15 +1,15 @@
 <template>
   <LandingPageSection title="Produtos mais acessados">
-    <div class="products-swiper-container">
+    <div class="products-slider-container">
       <img
         class="arrow arrow-previous"
         src="../../assets/images/seta.png"
         srcset="../../assets/images/seta@2x.png 2x, ../../assets/images/seta@3x.png 3x"
         :style="arrowDisabledStyle('left')"
-        @click="swipeProducts('previous')"
+        @click="slideProducts('previous')"
       >
 
-      <div ref="productsSwiper" class="products-swiper">
+      <div ref="productsSlider" class="products-slider">
         <div v-for="product in products" :key="product.id" ref="product" class="product">
           <div class="price-variation-tag" :style="priceVariationTagStyle(product)">
             <img class="price-variation-arrow" src="../../assets/images/price-variation-arrow.svg" :style="priceVariationArrowStyle(product)">
@@ -41,7 +41,7 @@
         src="../../assets/images/seta.png"
         srcset="../../assets/images/seta@2x.png 2x, ../../assets/images/seta@3x.png 3x"
         :style="arrowDisabledStyle('right')"
-        @click="swipeProducts('next')"
+        @click="slideProducts('next')"
       >
     </div>
 
@@ -67,32 +67,32 @@ export default {
   },
   data() {
     return {
-      productsSwiperWidth: 0,
+      productsSliderWidth: 0,
       cardsNumber: 4,
       distanceFromStart: 0,
       maxDistancePossible: 0
     }
   },
   mounted() {
-    if (mobile()) this.cardsNumber = 1
-    this.productsSwiperWidth = this.$refs.productsSwiper.clientWidth
-    this.maxDistancePossible = (this.productsSwiperWidth * this.products.length / this.cardsNumber) - this.productsSwiperWidth
-    for (const product of Array.from(this.$refs.productsSwiper.children)) {
+    if (mobile()) this.cardsNumber = 1.12
+    this.productsSliderWidth = this.$refs.productsSlider.clientWidth
+    this.maxDistancePossible = (this.productsSliderWidth * this.products.length / this.cardsNumber) - this.productsSliderWidth
+    for (const product of Array.from(this.$refs.productsSlider.children)) {
       const productSideMargins = 20
-      const productWidth = `${(this.productsSwiperWidth / this.cardsNumber) - productSideMargins}px`
+      const productWidth = `${(this.productsSliderWidth / this.cardsNumber) - productSideMargins}px`
       // It's not possible to set width in this case, so we need to set both minWidth and maxWidth
       product.style.minWidth = productWidth
       product.style.maxWidth = productWidth
     }
   },
   methods: {
-    swipeProducts(direction) {
+    slideProducts(direction) {
       if (direction === 'previous' && this.distanceFromStart > 0) {
-        this.distanceFromStart = this.distanceFromStart - this.productsSwiperWidth
+        this.distanceFromStart = this.distanceFromStart - this.productsSliderWidth
       } else if (direction === 'next' && this.distanceFromStart < this.maxDistancePossible) {
-        this.distanceFromStart = this.distanceFromStart + this.productsSwiperWidth
+        this.distanceFromStart = this.distanceFromStart + this.productsSliderWidth
       }
-      for (const product of Array.from(this.$refs.productsSwiper.children)) {
+      for (const product of Array.from(this.$refs.productsSlider.children)) {
         product.style.transform = `translateX(-${this.distanceFromStart}px)`
       }
     },
@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.products-swiper-container {
+.products-slider-container {
   display: flex;
   align-items: center;
   justify-items: center;
@@ -146,17 +146,11 @@ export default {
     left: 0;
     transform: translateX(-150%) rotate(180deg);
   }
-  .arrow-previous:active {
-    transform: translateX(-150%) rotate(180deg) scale(.9);
-  }
   .arrow-next {
     right: 0;
     transform: translateX(150%);
   }
-  .arrow-next:active {
-    transform: translateX(150%) scale(.8);
-  }
-  .products-swiper {
+  .products-slider {
     display: flex;
     overflow: hidden;
     overflow-x: scroll;
@@ -260,7 +254,10 @@ export default {
 }
 
 @media only screen and (max-width: 480px) {
-  .products-swiper-container {
+  .products-slider-container {
+    .arrow {
+      display: none;
+    }
   }
 }
 </style>

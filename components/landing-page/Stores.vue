@@ -138,14 +138,16 @@ export default {
       display: grid;
       grid-template-columns: repeat(3, auto);
       grid-template-rows: repeat(3, auto);
+      align-items: center;
+      justify-items: center;
       grid-gap: 20px;
       .store-logo {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 60px;
-        height: 60px;
+        width: 65px;
+        height: 65px;
         border-radius: 15px;
         box-shadow: 2px 2px 8px 1px rgba(0,0,0,.12);
         .store-logo-img {

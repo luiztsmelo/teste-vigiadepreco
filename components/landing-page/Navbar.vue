@@ -64,6 +64,11 @@ export default {
       width: 100px;
     }
     .auth-nav {
+      grid-template-columns: auto;
+      .user-img {
+        width: 18px;
+        margin-right: 0;
+      }
       .auth-link {
         display: none;
       }
