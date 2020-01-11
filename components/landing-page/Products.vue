@@ -44,10 +44,17 @@
         @click="swipeProducts('next')"
       >
     </div>
+
+    <a href="#">
+      <button class="see-more-button">
+        Ver mais
+      </button>
+    </a>
   </LandingPageSection>
 </template>
 
 <script>
+import mobile from 'is-mobile'
 import LandingPageSection from './LandingPageSection.vue'
 
 export default {
@@ -67,7 +74,6 @@ export default {
     }
   },
   mounted() {
-    const mobile = require('is-mobile')
     if (mobile()) this.cardsNumber = 1
     this.productsSwiperWidth = this.$refs.productsSwiper.clientWidth
     this.maxDistancePossible = (this.productsSwiperWidth * this.products.length / this.cardsNumber) - this.productsSwiperWidth
@@ -108,7 +114,7 @@ export default {
       if (Math.sign(product.price * product.percentage / 100) === 1) return 'transform: rotate(180deg)'
     },
     truncateTitle(product) {
-      const maxTitleLength = 70
+      const maxTitleLength = 65
       const dots = product.title.length > maxTitleLength ? '...' : ''
       return product.title.substring(0, maxTitleLength) + dots
     },
@@ -156,12 +162,11 @@ export default {
     overflow-x: scroll;
     .product {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto auto;
       margin: 10px;
-      padding: 27px;
+      padding: 28px;
       border-radius: 15px;
       text-decoration: none;
       color: #454344;
@@ -191,7 +196,7 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-items: center;
-        height: 100px;
+        height: 95px;
         .product-image {
           width: 100%;
           height: 100%;
@@ -204,7 +209,7 @@ export default {
         font-weight: 500;
         text-decoration: none;
         color: #454344;
-        margin: 30px 0;
+        margin: 35px 0;
       }
       .product-store {
         text-align: center;
@@ -230,6 +235,24 @@ export default {
       box-shadow: 1px 1px 12px 0px rgba(0,0,0,.2);
     }
   }
+}
+.see-more-button {
+  outline: none;
+  border: none;
+  background-color: #2977CE;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 100px;
+  box-shadow: 1px 1px 8px 0px rgba(0,0,0,.15);
+  transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) all .26s;
+  cursor: pointer;
+  margin-top: 25px;
+}
+.see-more-button:hover {
+  background-color: #3D92F5;
+  box-shadow: 1px 1px 12px 0px rgba(0,0,0,.15);
 }
 ::-webkit-scrollbar {
   width: 0px;
