@@ -1,68 +1,64 @@
 <template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        teste-vigiadepreco
-      </h1>
-      <h2 class="subtitle">
-        My classy Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
-    </div>
+  <section class="landing-page">
+    <Navbar />
+
+    <Header orientation="right" />
+
+    <Features />
+
+    <PromotionalVideo />
+
+    <Stores />
+
+    <Header orientation="left" />
+
+    <Products :products="products" :stores="stores" />
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Navbar from '../components/landing-page/Navbar.vue'
+import Header from '../components/landing-page/Header.vue'
+import Features from '../components/landing-page/Features.vue'
+import PromotionalVideo from '../components/landing-page/PromotionalVideo.vue'
+import Stores from '../components/landing-page/Stores.vue'
+import Products from '../components/landing-page/Products.vue'
 
 export default {
   components: {
-    Logo
+    Navbar,
+    Header,
+    Features,
+    PromotionalVideo,
+    Stores,
+    Products
+  },
+  head: {
+    title: 'Vigia de preço'
+  },
+  data() {
+    return {
+      products: [],
+      stores: []
+    }
+  },
+  async asyncData({ $axios }) {
+    try {
+      const resProducts = await $axios.$get('https://api.myjson.com/bins/1gnnec')
+      const resStores = await $axios.$get('https://api.myjson.com/bins/nher8')
+      return {
+        products: resProducts,
+        stores: resStores
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+<style lang="scss">
+.landing-page {
+  overflow: hidden;
 }
 </style>
