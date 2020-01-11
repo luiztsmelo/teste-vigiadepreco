@@ -185,13 +185,9 @@ export default {
       }
       .product-image-link {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-items: center;
-        height: 95px;
+        justify-content: center;
         .product-image {
-          width: 100%;
-          height: 100%;
+          height: 95px;
           object-fit: contain;
         }
       }
