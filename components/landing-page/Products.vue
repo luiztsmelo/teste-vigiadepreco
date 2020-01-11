@@ -1,14 +1,14 @@
 <template>
   <LandingPageSection title="Produtos mais acessados">
-    <div class="products-slider-container">
+    <div class="products-swiper-container">
       <img
         class="arrow arrow-previous"
         src="../../assets/images/seta.png"
         :style="arrowDisabledStyle('left')"
-        @click="slideProducts('previous')"
+        @click="swipeProducts('previous')"
       >
 
-      <div ref="productsSlider" class="products-slider">
+      <div ref="productsSwiper" class="products-swiper">
         <div v-for="product in products" :key="product.id" ref="product" class="product">
           <div class="price-variation-tag" :style="priceVariationTagStyle(product)">
             <img class="price-variation-arrow" src="../../assets/images/price-variation-arrow.svg" :style="priceVariationArrowStyle(product)">
@@ -18,7 +18,7 @@
           </div>
 
           <a href="#" class="product-image-link">
-            <img :src="product.image" class="product-image">
+            <img :src="product.image" class="product-image" loading="lazy">
           </a>
 
           <a href="#" class="product-title">
@@ -39,7 +39,7 @@
         class="arrow arrow-next"
         src="../../assets/images/seta.png"
         :style="arrowDisabledStyle('right')"
-        @click="slideProducts('next')"
+        @click="swipeProducts('next')"
       >
     </div>
 
@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      productsSliderWidth: 0,
+      productsSwiperWidth: 0,
       cardsNumber: 4,
       distanceFromStart: 0,
       maxDistancePossible: 0
@@ -73,24 +73,24 @@ export default {
   },
   mounted() {
     if (mobile()) this.cardsNumber = 1.12
-    this.productsSliderWidth = this.$refs.productsSlider.clientWidth
-    this.maxDistancePossible = (this.productsSliderWidth * this.products.length / this.cardsNumber) - this.productsSliderWidth
-    for (const product of Array.from(this.$refs.productsSlider.children)) {
+    this.productsSwiperWidth = this.$refs.productsSwiper.clientWidth
+    this.maxDistancePossible = (this.productsSwiperWidth * this.products.length / this.cardsNumber) - this.productsSwiperWidth
+    for (const product of Array.from(this.$refs.productsSwiper.children)) {
       const productSideMargins = 20
-      const productWidth = `${(this.productsSliderWidth / this.cardsNumber) - productSideMargins}px`
+      const productWidth = `${(this.productsSwiperWidth / this.cardsNumber) - productSideMargins}px`
       // It's not possible to set width in this case, so we need to set both minWidth and maxWidth
       product.style.minWidth = productWidth
       product.style.maxWidth = productWidth
     }
   },
   methods: {
-    slideProducts(direction) {
+    swipeProducts(direction) {
       if (direction === 'previous' && this.distanceFromStart > 0) {
-        this.distanceFromStart = this.distanceFromStart - this.productsSliderWidth
+        this.distanceFromStart = this.distanceFromStart - this.productsSwiperWidth
       } else if (direction === 'next' && this.distanceFromStart < this.maxDistancePossible) {
-        this.distanceFromStart = this.distanceFromStart + this.productsSliderWidth
+        this.distanceFromStart = this.distanceFromStart + this.productsSwiperWidth
       }
-      for (const product of Array.from(this.$refs.productsSlider.children)) {
+      for (const product of Array.from(this.$refs.productsSwiper.children)) {
         product.style.transform = `translateX(-${this.distanceFromStart}px)`
       }
     },
@@ -125,7 +125,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.products-slider-container {
+.products-swiper-container {
   display: flex;
   align-items: center;
   justify-items: center;
@@ -148,7 +148,7 @@ export default {
     right: 0;
     transform: translateX(150%);
   }
-  .products-slider {
+  .products-swiper {
     display: flex;
     overflow: hidden;
     overflow-x: scroll;
@@ -252,7 +252,7 @@ export default {
 }
 
 @media only screen and (max-width: 480px) {
-  .products-slider-container {
+  .products-swiper-container {
     .arrow {
       display: none;
     }
