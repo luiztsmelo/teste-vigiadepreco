@@ -2,7 +2,7 @@
   <footer>
     <section class="download-links-container">
       <div class="chrome-extension-wrapper">
-        <img class="chrome-img" src="../assets/images/chrome.png" srcset="../assets/images/chrome@2x.png 2x, ../assets/images/chrome@3x.png 3x" alt="Chrome">
+        <img class="chrome-img" src="../assets/images/chrome.png">
         <p class="text">
           <b>Instale a extensão no seu Google Chrome</b> Texto de suporte do título
         </p>
@@ -14,10 +14,10 @@
         </p>
         <div class="links">
           <a class="link" href="https://play.google.com/" target="__blank">
-            <img class="link-img" src="../assets/images/google-play.png" srcset="../assets/images/google-play@2x.png 2x, ../assets/images/google-play@3x.png 3x" alt="Download na Google Play">
+            <img class="link-img" src="../assets/images/google-play.png" alt="Download na Google Play">
           </a>
           <a class="link" href="https://www.apple.com/ios/app-store/" target="__blank">
-            <img class="link-img" src="../assets/images/app-store.png" srcset="../assets/images/app-store@2x.png 2x, ../assets/images/app-store@3x.png 3x" alt="Download na App Store">
+            <img class="link-img" src="../assets/images/app-store.png" alt="Download na App Store">
           </a>
         </div>
       </div>

@@ -1,9 +1,9 @@
 <template>
   <header class="navbar">
-    <img class="logo-img" src="../../assets/images/group-12.png" srcset="../../assets/images/group-12@2x.png 2x, ../../assets/images/group-12@3x.png 3x">
+    <img class="logo-img" src="../../assets/images/group-12.png">
 
     <nav class="auth-nav">
-      <img class="user-img" src="../../assets/images/user.png" srcset="../../assets/images/user@2x.png 2x, ../../assets/images/user@3x.png 3x">
+      <img class="user-img" src="../../assets/images/user.png">
       <a href="#" class="auth-link">Entrar</a>
       <div class="divider" />
       <a href="#" class="auth-link">Criar conta</a>

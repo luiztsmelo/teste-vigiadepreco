@@ -4,7 +4,6 @@
       <img
         class="arrow arrow-previous"
         src="../../assets/images/seta.png"
-        srcset="../../assets/images/seta@2x.png 2x, ../../assets/images/seta@3x.png 3x"
         :style="arrowDisabledStyle('left')"
         @click="slideProducts('previous')"
       >
@@ -39,7 +38,6 @@
       <img
         class="arrow arrow-next"
         src="../../assets/images/seta.png"
-        srcset="../../assets/images/seta@2x.png 2x, ../../assets/images/seta@3x.png 3x"
         :style="arrowDisabledStyle('right')"
         @click="slideProducts('next')"
       >

@@ -4,7 +4,7 @@
       <img class="shape-2" src="../../assets/images/shape-2.svg">
 
       <div v-for="feature in features" :key="feature.title" class="feature">
-        <img class="feature-img" :src="featureImgSrc(feature)" :srcset="`../../assets/images/${feature.img}@2x.png 2x, ../../assets/images/${feature.img}@3x.png 3x`">
+        <img class="feature-img" :src="featureImgSrc(feature)">
 
         <h3 class="feature-title">
           {{ feature.title }}

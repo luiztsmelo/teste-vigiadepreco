@@ -5,7 +5,7 @@
       <img v-if="orientation === 'left'" class="shape-3" src="../../assets/images/shape-3.svg">
 
       <div v-if="orientation === 'left'" class="phone-img-wrapper">
-        <img class="phone-img" src="../../assets/images/group-11.png" srcset="../../assets/images/group-11@2x.png 2x, ../../assets/images/group-11@3x.png 3x" alt="Imagem do app">
+        <img class="phone-img" src="../../assets/images/group-11.png" alt="Imagem do app">
       </div>
 
       <div class="headline-wrapper">
@@ -17,16 +17,16 @@
         </p>
         <div class="app-download-links">
           <a class="link" href="https://play.google.com/" target="__blank">
-            <img class="link-img" src="../../assets/images/google-play.png" srcset="../../assets/images/google-play@2x.png 2x, ../../assets/images/google-play@3x.png 3x" alt="Download na Google Play">
+            <img class="link-img" src="../../assets/images/google-play.png" alt="Download na Google Play">
           </a>
           <a class="link" href="https://www.apple.com/ios/app-store/" target="__blank">
-            <img class="link-img" src="../../assets/images/app-store.png" srcset="../../assets/images/app-store@2x.png 2x, ../../assets/images/app-store@3x.png 3x" alt="Download na App Store">
+            <img class="link-img" src="../../assets/images/app-store.png" alt="Download na App Store">
           </a>
         </div>
       </div>
 
       <div v-if="orientation === 'right'" class="phone-img-wrapper">
-        <img class="phone-img" src="../../assets/images/group-9.png" srcset="../../assets/images/group-9@2x.png 2x, ../../assets/images/group-9@3x.png 3x" alt="Imagem do app">
+        <img class="phone-img" src="../../assets/images/group-9.png" alt="Imagem do app">
       </div>
     </div>
   </LandingPageSection>
